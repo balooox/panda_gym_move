@@ -22,7 +22,7 @@ env = gym.make(env_id+'-v2')
 
 log_dir = './tensorboard/SAC' + env_id
 
-total_timesteps = 5000000
+total_timesteps = 3000000
 
 checkpoint_callback = CheckpointCallback(save_freq=100000, save_path='model_checkpoints/'+env_id,
                                          name_prefix=env_id)
