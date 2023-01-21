@@ -20,9 +20,9 @@ env_id = 'My_PandaPickAndPlace'
 
 env = gym.make(env_id+'-v2')
 
-log_dir = './tensorboard/' + env_id
+log_dir = './tensorboard/TQC-1' + env_id
 
-total_timesteps = 2000000
+total_timesteps = 5000000
 
 checkpoint_callback = CheckpointCallback(save_freq=100000, save_path='model_checkpoints/'+env_id,
                                          name_prefix=env_id)
@@ -35,4 +35,4 @@ model = TQC(policy="MultiInputPolicy", env=env, learning_rate=1e-3, buffer_size=
 
 model.learn(total_timesteps=total_timesteps, callback=checkpoint_callback)
 
-model.save('./trained/'+env_id+'/'+env_id+model.__class__.__name__)
+model.save('./trained/TQC-1'+env_id+'/'+env_id+model.__class__.__name__)
