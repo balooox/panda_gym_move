@@ -1,5 +1,4 @@
 from PandaPickAndPlaceMoveEnv import PandaPickAndPlaceMoveEnv
-from panda_gym.envs.panda_tasks.panda_pick_and_place import PandaPickAndPlaceEnv
 
 env = PandaPickAndPlaceMoveEnv(render=True)
 # env = PandaPickAndPlaceEnv(render=True)
