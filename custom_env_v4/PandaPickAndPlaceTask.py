@@ -84,7 +84,20 @@ class PandaPickAndPlaceMoveTask(Task):
         object_rotation = self.sim.get_base_rotation("object")
         object_velocity = self.sim.get_base_velocity("object")
         object_angular_velocity = self.sim.get_base_angular_velocity("object")
-        observation = np.concatenate([object_position, object_rotation, object_velocity, object_angular_velocity])
+        moving_platform_position = self.sim.get_base_position("object")
+        moving_platform_rotation = self.sim.get_base_rotation("object")
+        moving_platform_velocity = self.sim.get_base_velocity("object")
+        moving_platform_angular_velocity = self.sim.get_base_angular_velocity("object")
+        observation = np.concatenate(
+            [object_position,
+             object_rotation,
+             object_velocity,
+             object_angular_velocity,
+             moving_platform_position,
+             moving_platform_rotation,
+             moving_platform_velocity,
+             moving_platform_angular_velocity
+             ])
         return observation
 
     def get_achieved_goal(self) -> np.ndarray:
