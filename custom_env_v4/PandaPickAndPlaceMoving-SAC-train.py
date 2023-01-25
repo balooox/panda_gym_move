@@ -23,13 +23,13 @@ timestemp = time.strftime("%Y%m%d-%H%M")
 
 env = gym.make(env_id+'-v2')
 
-log_dir = './tensorboard/SAC' + env_id + timestemp
+log_dir = './tensorboard/SAC' + env_id
 
 total_timesteps = 2000000
 
 
 
-checkpoint_callback = CheckpointCallback(save_freq=100000, save_path='model_checkpoints/'+env_id + timestemp,
+checkpoint_callback = CheckpointCallback(save_freq=100000, save_path='model_checkpoints/'+env_id + "SAC" + timestemp,
                                          name_prefix=env_id)
 
 model = SAC(policy="MultiInputPolicy", env=env, learning_rate=1e-3, buffer_size=1000000, batch_size=2048,
@@ -40,4 +40,4 @@ model = SAC(policy="MultiInputPolicy", env=env, learning_rate=1e-3, buffer_size=
 
 model.learn(total_timesteps=total_timesteps, callback=checkpoint_callback)
 
-model.save('./trained/SAC'+env_id+'/'+env_id+model.__class__.__name__ + timestemp + "final")
+model.save('./trained/SAC'+env_id+'/'+env_id+model.__class__.__name__ + "SAC" + timestemp)
