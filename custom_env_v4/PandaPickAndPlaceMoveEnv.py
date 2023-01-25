@@ -26,8 +26,6 @@ class PandaPickAndPlaceMoveEnv(RobotTaskEnv):
 
     def step(self, action: np.ndarray) -> Tuple[Dict[str, np.ndarray], float, bool, Dict[str, Any]]:
         self.task.take_step()
-        self.sim
-
         return super(PandaPickAndPlaceMoveEnv, self).step(action)
 
     def reset(self) -> Dict[str, np.ndarray]:

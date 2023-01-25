@@ -2,6 +2,7 @@ from typing import Any, Dict, Union
 
 import numpy as np
 import random
+import pybullet as p
 
 from panda_gym.envs.core import Task
 from panda_gym.pybullet import PyBullet
@@ -72,6 +73,23 @@ class PandaPickAndPlaceMoveTask(Task):
             cur_moving_target[1] -= 0.003
             self.sim.set_base_pose("moving_platform", cur_moving_platform, orientation)
             self.sim.set_base_pose("target", cur_moving_target, orientation)
+
+
+        contact = p.getContactPoints(self.sim._bodies_idx["object"], self.sim._bodies_idx["moving_platform"])
+
+        if len(contact) > 0:
+            # print("Collision")
+            cur_object = self.sim.get_base_position("object")
+            if self.moving_direction == 1:
+                cur_object[1] += 0.003
+                self.sim.set_base_pose("object", cur_object, self.sim.get_base_rotation("object"))
+            elif self.moving_direction == 0:
+                cur_object[1] -= 0.003
+                self.sim.set_base_pose("object", cur_object, self.sim.get_base_rotation("object"))
+        else:
+            # print("No collision")
+            pass
+
 
         if cur_moving_platform[1] > 0.25:
             self.moving_direction = 0
