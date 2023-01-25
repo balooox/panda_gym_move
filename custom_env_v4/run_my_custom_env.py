@@ -1,4 +1,5 @@
 from PandaPickAndPlaceMoveEnv import PandaPickAndPlaceMoveEnv
+import time
 
 env = PandaPickAndPlaceMoveEnv(render=True)
 # env = PandaPickAndPlaceEnv(render=True)
@@ -16,4 +17,6 @@ while True:
     if done:
         observation, info = env.reset()
 
+    # Simulation verlangsamen
+    time.sleep(0.05)
     i += 1
