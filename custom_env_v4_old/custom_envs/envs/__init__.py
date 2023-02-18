@@ -1,0 +1,2 @@
+from custom_env_v4.custom_envs.envs.panda_tasks.My_PandaPickAndPlaceEnv import PandaPickAndPlaceMoveEnv
+
