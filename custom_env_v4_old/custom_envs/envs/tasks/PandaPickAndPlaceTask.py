@@ -74,6 +74,8 @@ class PandaPickAndPlaceMoveTask(Task):
             self.sim.set_base_pose("moving_platform", cur_moving_platform, orientation)
             self.sim.set_base_pose("target", cur_moving_target, orientation)
 
+        self.goal = self.sim.get_base_position("target")
+
         contact = p.getContactPoints(self.sim._bodies_idx["object"], self.sim._bodies_idx["moving_platform"])
 
         if len(contact) > 0:
