@@ -76,6 +76,7 @@ class PandaPickAndPlaceMoveTask(Task):
             self.sim.set_base_pose("moving_platform", cur_moving_platform, orientation)
             self.sim.set_base_pose("target", cur_moving_target, orientation)
 
+        self.goal = self.sim.get_base_position("target").copy()
 
         contact = p.getContactPoints(self.sim._bodies_idx["object"], self.sim._bodies_idx["moving_platform"])
 
@@ -162,15 +163,7 @@ class PandaPickAndPlaceMoveTask(Task):
 
     def compute_reward(self, achieved_goal, desired_goal, info: Dict[str, Any]) -> Union[np.ndarray, float]:
         d = distance(achieved_goal, desired_goal)
-        d_gripper = distance(self.get_ee_position(), desired_goal)
-        print(d, d_gripper)
-
-        if d_gripper < 0.05:
-            r_gripper = 2
-        else:
-            r_gripper = 0
-
         if self.reward_type == "sparse":
             return -np.array(d > self.distance_threshold, dtype=np.float64)
         else:
-            return -d - r_gripper
+            return -d
