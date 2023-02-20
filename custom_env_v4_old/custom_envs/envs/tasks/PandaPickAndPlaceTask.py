@@ -56,7 +56,7 @@ class PandaPickAndPlaceMoveTask(Task):
             half_extents=np.array([0.1, 0.1, 0.01]),
             mass=0.0,
             position=np.array([.15, 0, 0.2]),
-            rgba_color=np.array([1, 0.2, 0.5, 1.0]),
+            rgba_color=np.array([0.16, 0.16, 0.16, 1.0]),
         )
 
     def take_step(self):

@@ -4,7 +4,7 @@ import random
 
 from panda_gym.envs.core import RobotTaskEnv
 from panda_gym.envs.robots.panda import Panda
-from custom_env_v4.custom_envs.envs.tasks.PandaPickAndPlaceTask import PandaPickAndPlaceMoveTask
+from custom_env_v4_old.custom_envs.envs.tasks.PandaPickAndPlaceTask import PandaPickAndPlaceMoveTask
 from panda_gym.pybullet import PyBullet
 from typing import Any, Dict, Optional, Tuple, Union
 

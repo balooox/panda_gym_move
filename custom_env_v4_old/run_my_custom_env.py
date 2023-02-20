@@ -1,8 +1,12 @@
 from PandaPickAndPlaceMoveEnv import PandaPickAndPlaceMoveEnv
 import time
+import gym
+import custom_envs
 
-env = PandaPickAndPlaceMoveEnv(render=True)
-# env = PandaPickAndPlaceEnv(render=True)
+# env = PandaPickAndPlaceMoveEnv(render=True)
+
+env_id = 'My_PandaPickAndPlace'
+env = gym.make(env_id + '-v2', render=True)
 
 info = env.reset()
 i = 0
@@ -11,7 +15,7 @@ while True:
     action = env.action_space.sample()
     obs, reward, done, info = env.step(action)
 
-    if i % 400 == 0:
+    if i % 800 == 0:
         env.reset()
 
     if done:
