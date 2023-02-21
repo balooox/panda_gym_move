@@ -13,6 +13,7 @@ class PandaPickAndPlaceMoveTask(Task):
     def __init__(
         self,
         sim: PyBullet,
+        get_ee_position,
         reward_type: str = "sparse",
         distance_threshold: float = 0.05,
         goal_xy_range: float = 0.3,
@@ -22,6 +23,7 @@ class PandaPickAndPlaceMoveTask(Task):
         super().__init__(sim)
         self.reward_type = reward_type
         self.distance_threshold = distance_threshold
+        self.get_ee_position = get_ee_position
         self.object_size = 0.04
         self.goal_range_low = np.array([-goal_xy_range / 2, -goal_xy_range / 2, 0])
         self.goal_range_high = np.array([goal_xy_range / 2, goal_xy_range / 2, goal_z_range])
