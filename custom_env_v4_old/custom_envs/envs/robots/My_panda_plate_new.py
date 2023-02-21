@@ -38,7 +38,7 @@ class My_Panda_Plate_New(PyBulletRobot):
             sim,
             body_name="panda",
             file_name=file_place + "/panda_plate.urdf",
-            # file_name="/home/zeyang/Data/Onedrive/文档/THU/Codes/Python/panda_robot_task/custom_envs/envs/robots/panda_plate.urdf",
+            # file_name="/home/zeyang/Data/Onedrive/文档/THU/Codes/Python/panda_robot_task/custom_env/env/robots/panda_plate.urdf",
             base_position=base_position,
             action_space=action_space,
             joint_indices=np.array([0, 1, 2, 3, 4, 5, 6]),

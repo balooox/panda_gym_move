@@ -19,8 +19,6 @@ for i in range(num_episode):
     print(rewards)
     env.render()
 
-    time.sleep(0.3)
-
     if done:
         print("reset")
         env.reset()
