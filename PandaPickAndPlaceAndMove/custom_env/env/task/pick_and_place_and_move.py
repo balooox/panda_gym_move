@@ -13,7 +13,6 @@ class PandaPickAndPlaceMoveTask(Task):
     def __init__(
         self,
         sim: PyBullet,
-        get_ee_position,
         reward_type: str = "sparse",
         distance_threshold: float = 0.05,
         goal_xy_range: float = 0.3,
@@ -23,7 +22,6 @@ class PandaPickAndPlaceMoveTask(Task):
         super().__init__(sim)
         self.reward_type = reward_type
         self.distance_threshold = distance_threshold
-        self.get_ee_position = get_ee_position
         self.object_size = 0.04
         self.goal_range_low = np.array([-goal_xy_range / 2, -goal_xy_range / 2, 0])
         self.goal_range_high = np.array([goal_xy_range / 2, goal_xy_range / 2, goal_z_range])
@@ -170,15 +168,43 @@ class PandaPickAndPlaceMoveTask(Task):
         else:
             return -d
         """
+        print("#########")
+        print("desired_goal")
+        print(desired_goal)
+        print("---")
+        print("info:")
+        print(info)
+        print("len")
+        print(len(info))
+        print("#########")
+
+        if len(info) == 2:
+            ee_position = info["ee_position"]
+        else:
+            ee_position = []
+            print(ee_position)
+            for i in range(len(info)):
+                ee_position.append(info[i]["ee_position"])
+                #print(info[i]["ee_position"])
+        
+        print("ee_position")
+        print(ee_position)
+        ee_position = np.asarray(ee_position)
+
+        """
+        durch das info element kann man ein ee_position array erzeugen, dass die gleiche form wie 
+        desired_goal besitzt, egal wie groß das element ist! ist komme nur mit np-arrays nicht zurecht
+        """
+
+
 
         d = distance(achieved_goal, desired_goal)
-        d_gripper = distance(self.get_ee_position(), desired_goal)
-        print(d, d_gripper)
+        d_gripper = distance(ee_position, desired_goal)
+        r_gripper = 0
+        # print(d, d_gripper)
 
         if d_gripper < 0.05:
             r_gripper = 2
-        else:
-            r_gripper = 0
 
         if self.reward_type == "sparse":
             return -np.array(d > self.distance_threshold, dtype=np.float64)
