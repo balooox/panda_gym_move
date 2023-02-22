@@ -16,8 +16,7 @@ while True:
         env.reset()
 
     if done:
-        observation, info = env.reset()
+        env.reset()
 
-    # Simulation verlangsamen
     time.sleep(0.05)
     i += 1
