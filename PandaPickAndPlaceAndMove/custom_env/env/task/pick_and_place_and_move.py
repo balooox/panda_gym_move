@@ -161,13 +161,6 @@ class PandaPickAndPlaceMoveTask(Task):
         return np.array(d < self.distance_threshold, dtype=np.float64)
 
     def compute_reward(self, achieved_goal, desired_goal, info: Dict[str, Any]) -> Union[np.ndarray, float]:
-        """
-        d = distance(achieved_goal, desired_goal)
-        if self.reward_type == "sparse":
-            return -np.array(d > self.distance_threshold, dtype=np.float64)
-        else:
-            return -d
-        """
         print("#########")
         print("desired_goal")
         print(desired_goal)
@@ -196,11 +189,10 @@ class PandaPickAndPlaceMoveTask(Task):
         desired_goal besitzt, egal wie groß das element ist! ist komme nur mit np-arrays nicht zurecht
         """
 
-
-
         d = distance(achieved_goal, desired_goal)
         d_gripper = distance(ee_position, desired_goal)
         r_gripper = 0
+
         # print(d, d_gripper)
 
         if d_gripper < 0.05:
