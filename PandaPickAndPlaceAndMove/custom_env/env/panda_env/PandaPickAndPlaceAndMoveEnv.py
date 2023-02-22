@@ -21,23 +21,12 @@ class PandaPickAndPlaceMoveEnv(RobotTaskEnv):
     def __init__(self, render: bool = False, reward_type: str = "sparse", control_type: str = "ee") -> None:
         sim = PyBullet(render=render)
         robot = Panda(sim, block_gripper=False, base_position=np.array([-0.6, 0.0, 0.0]), control_type=control_type)
-        task = PandaPickAndPlaceMoveTask(sim, reward_type="dense")
+        task = PandaPickAndPlaceMoveTask(sim, reward_type="dense", get_ee_position=robot.get_ee_position)
         super().__init__(robot, task)
 
     def step(self, action: np.ndarray) -> Tuple[Dict[str, np.ndarray], float, bool, Dict[str, Any]]:
         self.task.take_step()
-        self.robot.set_action(action)
-        self.sim.step()
-        obs = self._get_obs()
-        done = False
-        info = {"is_success": self.task.is_success(obs["achieved_goal"], self.task.get_goal(),),
-                "ee_position": self.robot.get_ee_position()}
-        reward = self.task.compute_reward(
-            obs["achieved_goal"],
-            self.task.get_goal(),
-            info)
-        assert isinstance(reward, float)  # needed for pytype cheking
-        return obs, reward, done, info
+        return super(PandaPickAndPlaceMoveEnv, self).step(action)
 
     def reset(self) -> Dict[str, np.ndarray]:
         print("reset")
