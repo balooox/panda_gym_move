@@ -183,6 +183,7 @@ class PandaPickAndPlaceMoveTask(Task):
         print("ee_position")
         print(ee_position)
         ee_position = np.asarray(ee_position)
+        print(ee_position)
 
         """
         durch das info element kann man ein ee_position array erzeugen, dass die gleiche form wie 
