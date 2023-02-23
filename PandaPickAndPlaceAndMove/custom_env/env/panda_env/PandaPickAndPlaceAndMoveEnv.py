@@ -40,6 +40,6 @@ class PandaPickAndPlaceMoveEnv(RobotTaskEnv):
         return obs, reward, done, info
 
     def reset(self) -> Dict[str, np.ndarray]:
-        print("reset")
+        # print("reset")
         self.task.moving_direction = random.randint(0, 1)
         return super(PandaPickAndPlaceMoveEnv, self).reset()

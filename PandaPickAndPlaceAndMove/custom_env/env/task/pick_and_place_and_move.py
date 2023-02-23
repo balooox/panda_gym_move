@@ -181,8 +181,8 @@ class PandaPickAndPlaceMoveTask(Task):
                 #print(info[i]["ee_position"])
 
         #print("###")
-        print("ee_position")
-        print(ee_position)
+        #print("ee_position")
+        #print(ee_position)
         ee_position = np.asarray(ee_position)
         #print(ee_position)
         print("###")
