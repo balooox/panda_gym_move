@@ -161,6 +161,9 @@ class PandaPickAndPlaceMoveTask(Task):
         return np.array(d < self.distance_threshold, dtype=np.float64)
 
     def compute_reward(self, achieved_goal, desired_goal, info: Dict[str, Any]) -> Union[np.ndarray, float]:
+        print("desired_goal")
+        print(desired_goal)
+        print("#############################")
         d = distance(achieved_goal, desired_goal)
         if self.reward_type == "sparse":
             return -np.array(d > self.distance_threshold, dtype=np.float64)

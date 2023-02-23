@@ -162,28 +162,30 @@ class PandaPickAndPlaceMoveTask(Task):
 
     def compute_reward(self, achieved_goal, desired_goal, info: Dict[str, Any]) -> Union[np.ndarray, float]:
         print("#########")
-        print("desired_goal")
-        print(desired_goal)
-        print("---")
-        print("info:")
-        print(info)
-        print("len")
-        print(len(info))
-        print("#########")
+        #print("desired_goal")
+        #print(desired_goal)
+        #print("---")
+        #print("info:")
+        #print(info)
+        #print("len info")
+        #print(len(info))
+        #print("###")
 
         if len(info) == 2:
             ee_position = info["ee_position"]
         else:
             ee_position = []
-            print(ee_position)
+            #print(ee_position)
             for i in range(len(info)):
                 ee_position.append(info[i]["ee_position"])
                 #print(info[i]["ee_position"])
-        
+
+        #print("###")
         print("ee_position")
         print(ee_position)
         ee_position = np.asarray(ee_position)
-        print(ee_position)
+        #print(ee_position)
+        print("###")
 
         """
         durch das info element kann man ein ee_position array erzeugen, dass die gleiche form wie 
@@ -194,12 +196,34 @@ class PandaPickAndPlaceMoveTask(Task):
         d_gripper = distance(ee_position, desired_goal)
         r_gripper = 0
 
-        # print(d, d_gripper)
+        #print("###")
+        #print("d_gripper")
+        #print(d, d_gripper)
+        #print("#########")
 
-        if d_gripper < 0.05:
-            r_gripper = 2
+        if len(info) == 2:
+            if d_gripper < 0.05:
+                r_gripper = 2
+        else:
+            r_gripper = []
+            for i in range(len(info)):
+                if d_gripper[i] < 0.05:
+                    r_gripper.append(2)
+                else:
+                    r_gripper.append(0)
+
+            r_gripper = np.asarray(r_gripper)
 
         if self.reward_type == "sparse":
             return -np.array(d > self.distance_threshold, dtype=np.float64)
         else:
             return -d - r_gripper
+
+
+        """
+        d = distance(achieved_goal, desired_goal)
+        if self.reward_type == "sparse":
+            return -np.array(d > self.distance_threshold, dtype=np.float64)
+        else:
+            return -d
+        """
