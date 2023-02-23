@@ -161,7 +161,7 @@ class PandaPickAndPlaceMoveTask(Task):
         return np.array(d < self.distance_threshold, dtype=np.float64)
 
     def compute_reward(self, achieved_goal, desired_goal, info: Dict[str, Any]) -> Union[np.ndarray, float]:
-        print("#########")
+        #print("#########")
         #print("desired_goal")
         #print(desired_goal)
         #print("---")
@@ -185,7 +185,7 @@ class PandaPickAndPlaceMoveTask(Task):
         #print(ee_position)
         ee_position = np.asarray(ee_position)
         #print(ee_position)
-        print("###")
+        #print("###")
 
         """
         durch das info element kann man ein ee_position array erzeugen, dass die gleiche form wie 
