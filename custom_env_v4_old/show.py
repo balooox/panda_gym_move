@@ -7,7 +7,7 @@ import custom_envs
 
 env_id = 'My_PandaPickAndPlace'
 env = gym.make(env_id + '-v2', render=True)
-model = TQC.load("TQC2.zip", env=env)
+model = TQC.load("TQC3.zip", env=env)
 
 num_episode = 1000
 
@@ -16,7 +16,7 @@ obs = env.reset()
 for i in range(num_episode):
     action, _states = model.predict(obs)
     obs, rewards, done, info = env.step(action)
-    print(rewards)
+    # print(rewards)
     env.render()
 
     time.sleep(1)

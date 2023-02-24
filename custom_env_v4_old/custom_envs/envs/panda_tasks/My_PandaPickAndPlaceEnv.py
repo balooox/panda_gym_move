@@ -3,7 +3,7 @@ import random
 
 
 from panda_gym.envs.core import RobotTaskEnv
-from panda_gym.envs.robots.panda import Panda
+from custom_env_v4_old.custom_envs.envs.robots.Panda2 import Panda2
 from custom_env_v4_old.custom_envs.envs.tasks.PandaPickAndPlaceTask import PandaPickAndPlaceMoveTask
 from panda_gym.pybullet import PyBullet
 from typing import Any, Dict, Optional, Tuple, Union
@@ -20,7 +20,7 @@ class PandaPickAndPlaceMoveEnv(RobotTaskEnv):
 
     def __init__(self, render: bool = False, reward_type: str = "sparse", control_type: str = "ee") -> None:
         sim = PyBullet(render=render)
-        robot = Panda(sim, block_gripper=False, base_position=np.array([-0.6, 0.0, 0.0]), control_type=control_type)
+        robot = Panda2(sim, block_gripper=False, base_position=np.array([-0.6, 0.0, 0.0]), control_type=control_type)
         task = PandaPickAndPlaceMoveTask(sim, reward_type="dense")
         super().__init__(robot, task)
 
@@ -28,7 +28,7 @@ class PandaPickAndPlaceMoveEnv(RobotTaskEnv):
         self.task.take_step()
         print("#############################")
         print("ee_position")
-        print(self.robot.get_ee_velocity())
+        print(self.robot.get_ee_position())
         return super(PandaPickAndPlaceMoveEnv, self).step(action)
 
     def reset(self) -> Dict[str, np.ndarray]:

@@ -13,6 +13,7 @@ class PandaPickAndPlaceMoveTask(Task):
     def __init__(
         self,
         sim: PyBullet,
+        get_ee_position,
         reward_type: str = "sparse",
         distance_threshold: float = 0.05,
         goal_xy_range: float = 0.3,
@@ -22,6 +23,7 @@ class PandaPickAndPlaceMoveTask(Task):
         super().__init__(sim)
         self.reward_type = reward_type
         self.distance_threshold = distance_threshold
+        self.get_ee_position = get_ee_position
         self.object_size = 0.04
         self.goal_range_low = np.array([-goal_xy_range / 2, -goal_xy_range / 2, 0])
         self.goal_range_high = np.array([goal_xy_range / 2, goal_xy_range / 2, goal_z_range])
@@ -161,6 +163,33 @@ class PandaPickAndPlaceMoveTask(Task):
         return np.array(d < self.distance_threshold, dtype=np.float64)
 
     def compute_reward(self, achieved_goal, desired_goal, info: Dict[str, Any]) -> Union[np.ndarray, float]:
+        """
+        d = distance(achieved_goal, desired_goal)
+        d_gripper = distance(self.get_ee_position(), desired_goal)
+
+        print("###############")
+        print("desired goal")
+        print(desired_goal)
+        print("ee_position")
+        print(self.get_ee_position())
+        print("###############")
+        # print(d, d_gripper)
+
+        r_gripper = 0
+
+        if d_gripper < 0.1 and d_gripper >= 0.05:
+            r_gripper = 15
+        elif d_gripper < 0.05:
+            r_gripper = 20
+
+
+        if self.reward_type == "sparse":
+            return -np.array(d > self.distance_threshold, dtype=np.float64)
+        else:
+            return -d - r_gripper
+        """
+
+        """
         #print("#########")
         #print("desired_goal")
         #print(desired_goal)
@@ -187,10 +216,6 @@ class PandaPickAndPlaceMoveTask(Task):
         #print(ee_position)
         #print("###")
 
-        """
-        durch das info element kann man ein ee_position array erzeugen, dass die gleiche form wie 
-        desired_goal besitzt, egal wie groß das element ist! ist komme nur mit np-arrays nicht zurecht
-        """
 
         d = distance(achieved_goal, desired_goal)
         d_gripper = distance(ee_position, desired_goal)
@@ -218,12 +243,26 @@ class PandaPickAndPlaceMoveTask(Task):
             return -np.array(d > self.distance_threshold, dtype=np.float64)
         else:
             return -d - r_gripper
-
-
         """
+
         d = distance(achieved_goal, desired_goal)
+        r_gripper = 0
+
+        if len(info) == 2:
+            if info["gripper_distance"] < 0.05:
+                r_gripper = 2
+        else:
+            r_gripper = []
+            for i in range(len(info)):
+                if info[i]["gripper_distance"] < 0.05:
+                    r_gripper.append(2)
+                else:
+                    r_gripper.append(0)
+
+            r_gripper = np.asarray(r_gripper)
+
         if self.reward_type == "sparse":
             return -np.array(d > self.distance_threshold, dtype=np.float64)
         else:
-            return -d
-        """
+            return -d - r_gripper
+

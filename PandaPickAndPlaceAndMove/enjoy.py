@@ -1,4 +1,6 @@
 import sys
+import time
+
 import gym
 import panda_gym
 import custom_env
@@ -46,6 +48,8 @@ for i in range(num_episode):
     action, _states = model.predict(obs)
     obs, rewards, done, info = env.step(action)
     env.render()
+
+    time.sleep(0.05)
 
     if done:
         env.reset()
