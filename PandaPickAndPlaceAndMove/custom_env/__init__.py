@@ -12,8 +12,15 @@ for reward_type in ["sparse", "dense"]:
         kwargs = {"reward_type": reward_type, "control_type": control_type}
 
         register(
+            id="PandaPickAndPlaceAndThrow{}{}-v1".format(control_suffix, reward_suffix),
+            entry_point="PandaPickAndPlaceAndMove.custom_env.env:PandaPickAndPlaceAndThrowEnv",
+            kwargs=kwargs,
+            max_episode_steps=50,
+        )
+
+        register(
             id="PandaPickAndPlaceAndMove{}{}-v1".format(control_suffix, reward_suffix),
-            entry_point="PandaPickAndPlaceAndMove.custom_env.env:PandaPickAndPlaceMoveEnv",
+            entry_point="PandaPickAndPlaceAndMove.custom_env.env:PandaPickAndPlaceAndMoveEnv",
             kwargs=kwargs,
             max_episode_steps=50,
         )
