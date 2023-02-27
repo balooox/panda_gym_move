@@ -19,6 +19,7 @@ More information at the usage section.
 This project was executed in a conda environment. Under Windows we used PyCharm as an execution IDE, 
 under Linux (Ubuntu) you can execute the code throw the CLI. 
 
+Following commands were executed:
 ```bash
 conda create --name name python=3.10
 conda activate name
@@ -28,7 +29,9 @@ pip install panda-gym==2.0
 pip install sb3-contrib
 ```
 
-See the requirements.txt for more information
+Because of the fast developing paste in the reinforcement learing sector the safer way is to use the
+`docs/requirements.txt` file. 
+Run conda `conda create --name <env> --file <this file>`
 
 ## Usage
 
