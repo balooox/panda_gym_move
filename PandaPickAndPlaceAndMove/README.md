@@ -11,7 +11,7 @@ We have implemented two custom gym environments:
 - `PandaPickAndPlaceAndThrow-v1`
 - `PandaPickAndPlaceAndMove-v1`
 
-This repository includes trained models for the environments, available as a zip-file. 
+This repository includes trained models for the environments, available as zip files. 
 More information at the usage section.
 
 ## Installation 
@@ -50,6 +50,12 @@ through stable-baselines3 and sb3_contrib, like PPO etc... ).
 python ./train env algo amount
 # For example
 python ./train.py PandaPickAndPlaceAndThrow-v1 TQC 1000000
+```
+
+During training (or afterwards) you can visualize the training process by
+using tensorboard. To do so, run following command in the CLI: 
+```bash
+tensorboard --logdir ./tensorboard
 ```
 
 ### enjoy.py
