@@ -82,4 +82,9 @@ Trained env for `PandaPickAndPlaceAndThrow-v1`
 
 ![Bullet_Physics_PandaPickAndPlaceAndThrowTrained](https://user-images.githubusercontent.com/92969814/221651495-50b2c340-bdf4-4f0f-ac3c-43160bd9f7c5.gif)
 
+Trained env for `PandaPickAndPlaceAndMove-v1`
+
+![Bullet_Physics_PandaPickAndPlaceAndMoveTrained](https://user-images.githubusercontent.com/92969814/221654873-74b91669-07c7-419e-af76-c18a4cdd8ff6.gif)
+
+
 
