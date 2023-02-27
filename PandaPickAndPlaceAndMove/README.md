@@ -8,8 +8,8 @@ Models were successfully trained with the TQC algorithm and partly also with the
 stable-baselines3 and sb3-contrib to integrate the algorithms. 
 
 We have implemented two custom gym environments:
-- PandaPickAndPlaceAndThrow-v1
-- PandaPickAndPlaceAndMove-v1
+- `PandaPickAndPlaceAndThrow-v1`
+- `PandaPickAndPlaceAndMove-v1`
 
 This repository includes trained models for the environments, available as a zip-file. 
 More information at the usage section.
@@ -63,6 +63,8 @@ python ./enjoy PandaPickAndPlaceAndThrow-v1 TQC ./benchmark/PandaPickAndPlaceAnd
 ```
 
 ### evaluate.py
+During training, a printed log on the CLI gives you information about the 
+success rate and the mean reward for each episode. To truly evaluate a model use the evaluate.py 
 
 ```bash
 python  ./evaluate env algo file
