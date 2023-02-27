@@ -29,7 +29,7 @@ pip install panda-gym==2.0
 pip install sb3-contrib
 ```
 
-Because of the fast developing paste in the reinforcement learing sector the safer way is to use the
+Because of the fast developing paste in the reinforcement learning sector the safer way is to use the
 `docs/requirements.txt` file. 
 Run conda `conda create --name <env> --file <this file>`
 
@@ -63,7 +63,7 @@ tensorboard --logdir ./tensorboard
 
 ### enjoy.py
 After a training, a zip file is saved under the ./trained directory.
-You can run enjoy.py two see a visualized result of the training
+You can run enjoy.py two see a visualized result of the training.
 
 ```bash
 python ./enjoy env algo file
@@ -73,7 +73,7 @@ python ./enjoy PandaPickAndPlaceAndThrow-v1 TQC ./benchmark/PandaPickAndPlaceAnd
 
 ### evaluate.py
 During training, a printed log on the CLI gives you information about the 
-success rate and the mean reward for each episode. To truly evaluate a model use the evaluate.py 
+success rate and the mean reward for each episode. To truly evaluate a model use the evaluate.py.
 
 ```bash
 python  ./evaluate env algo file
@@ -83,19 +83,26 @@ python ./evaluate PandaPickAndPlaceAndThrow-v1 TQC ./benchmark/PandaPickAndPlace
 
 ## Environments
 
-This custom environment was used for `PandaPickAndPlaceAndMove-v1` and `PandaPickAndPlaceAndThrow-v1` 
+This custom environment was used for `PandaPickAndPlaceAndMove-v1` and `PandaPickAndPlaceAndThrow-v1`. 
 
 ![Bullet_Physics_PandaPickAndPlaceAndMove_AdobeExpress](https://user-images.githubusercontent.com/92969814/221543161-c6864244-e082-4d00-bb1a-0d3ed8c66278.gif)
 
 ### Trained model 
 
-Trained env for `PandaPickAndPlaceAndThrow-v1`
+Trained env for `PandaPickAndPlaceAndThrow-v1`:
 
 ![Bullet_Physics_PandaPickAndPlaceAndThrowTrained](https://user-images.githubusercontent.com/92969814/221651495-50b2c340-bdf4-4f0f-ac3c-43160bd9f7c5.gif)
 
-Trained env for `PandaPickAndPlaceAndMove-v1`
+Trained env for `PandaPickAndPlaceAndMove-v1`:
 
 ![Bullet_Physics_PandaPickAndPlaceAndMoveTrained](https://user-images.githubusercontent.com/92969814/221654873-74b91669-07c7-419e-af76-c18a4cdd8ff6.gif)
 
+
+
+### Site note
+
+It takes approximately 1 million episodes, before an agent reach 
+convergence. The models were trained on a server with two
+Nvidia Quadro 8000. Not every experiment reached convergence.
 
 
