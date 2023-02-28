@@ -84,7 +84,9 @@ python ./evaluate PandaPickAndPlaceAndThrow-v1 TQC ./benchmark/PandaPickAndPlace
 ## Environments
 
 This custom environment was used for `PandaPickAndPlaceAndMove-v1` and `PandaPickAndPlaceAndThrow-v1`. 
-![PandaPickAndPlaceAndThrow-v1](https://user-images.githubusercontent.com/7521492/221832955-4cb0a4fb-a357-40d9-9fce-09e501c5db79.gif)
+
+![PandaPickAndPlaceAndThrow-v1](https://user-images.githubusercontent.com/7521492/221948141-d4e49583-81b7-4336-ac62-279728e0e46f.gif)
+
 
 
 ### Trained model 
