@@ -76,3 +76,7 @@ elif algo == 'SAC':
     model.learn(total_timesteps=total_timesteps, callback=checkpoint_callback)
 
     model.save('./trained/' + env_id + '/' + algo + '/' + env_id + model.__class__.__name__ + timestamp)
+
+"""
+Space for different training algorithms 
+"""
