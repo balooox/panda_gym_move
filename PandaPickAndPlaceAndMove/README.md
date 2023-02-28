@@ -20,10 +20,10 @@ This project was executed in a conda environment. Under Windows we used PyCharm 
 under Linux (Ubuntu) you can execute the code throw the CLI. 
 
 ```bash
-conda create --name name python=3.10
+conda create -n example_name python=3.10
 conda activate name
-conda install --channel conda-forge stable-baselines3
-conda install --channel conda-forge tensorboard
+conda install -c conda-forge stable-baselines3[extra]
+conda install -c conda-forge tensorboard
 pip install panda-gym==2.0
 pip install sb3-contrib
 ```
